@@ -1,9 +1,9 @@
 import numpy as np
-# size = int(input("Enter the size of array::"))
-# arr = np.array([input("Enter elements::") for _ in range(size)])
-# np.set_printoptions(threshold=np.inf)
-# result = ', '.join(map(str,arr))
-# print(result)
+size = int(input("Enter the size of array::"))
+arr = np.array([input("Enter elements::") for _ in range(size)])
+np.set_printoptions(threshold=np.inf)
+result = ', '.join(arr)
+print(result)
 
 def partition(array):
     i,j= 1,len(array) -1
@@ -24,6 +24,6 @@ def partition(array):
 #     partition(arr, x)
 # else:
 #     print("Number not in array"dwdwdw)
-arr = [6,9,4,5,1,7,3,10]
+# arr = [6,9,4,5,1,7,3,10]
 partition(arr)
 print(arr)
