@@ -7,6 +7,9 @@ np.set_printoptions(threshold=np.inf)
 print("Original array:: ", arr)
 
 def grouping(array, left, right, k):  # Changed the function definition to include 'k'
+    if right - left < 5:
+        sorted_array = sorted(array[left:right+1])
+        return sorted_array[k]
     group = [array[i:i+5].tolist() for i in range(left, right+1, 5)]  # Grouping into 5 groups
     for i in group:
         i.sort()
