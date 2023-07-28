@@ -37,7 +37,7 @@ def grouping(array, left, right, k):  # Changed the function definition to inclu
 
 def find_median(list):
     list.sort()
-    median = math.floor(list[len(list)//2])
+    median = math.ceil(list[len(list)//2])
     return median
 
 def find_median_of_medians(medians):
