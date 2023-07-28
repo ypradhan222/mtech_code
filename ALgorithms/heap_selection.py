@@ -6,11 +6,11 @@ def swap(array,num,num2):
 def heapify(array,left,right):
    i,j = left,right
    # L=[]
-   while i!=j:
+   while i<=j:
       if array[i]<= array[2*i+1] and array[i]<=array[2*i+2]:
          # L[i] = array[i]
          swap(array,array[i],array[j])
-      i+=1
+         i+=1
    return array
 
 if __name__== "__main__":
