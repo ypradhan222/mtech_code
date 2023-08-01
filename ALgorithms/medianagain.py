@@ -14,21 +14,24 @@ def find_median_of_medians(list):
    if len(list)==1:
       return list[0]
    return find_median(list)
+def swap(array,num,num2):
+   array[num],array[num2] = array[num2],array[num]
 
 def partitionUsingMedian(array,left,right,median_index):
    i ,j = left,right
    value = array[median_index]
+   swap(array,left,median_index)
    while i <= j:
       if array[i]<=value:
          i+=1
       elif array[j]>value:
          j-=1
       else:
-         array[i],array[j] = array[j],array[i]
+         swap(array,i,j)
          i+=1
          j-=1
-      array[0],array[j] = array[j],array[0]
-   return array
+   swap(array,left,j)
+   return j
 
 def select(array,left,right,k):
    if left==right:
@@ -37,13 +40,13 @@ def select(array,left,right,k):
    index_piv = partitionUsingMedian(array, left, right, array.index(x))
    if k == index_piv-left+1:
       return array[index_piv]
-   elif k < index_piv-low+1:
+   elif k < index_piv-left+1:
       return select(array, left, index_piv-1, k)
    else:
       return select(array, index_piv+1, right, k-(index_piv-left+1))
 
 if __name__ == "__main__":
-   try:
+   # try:
       array =[]
       size= int(input("Enter the size of array::"))
       for _ in range(size):
@@ -55,12 +58,12 @@ if __name__ == "__main__":
          medians.append(find_median(j))
       print(medians)
       median_of_medians = find_median_of_medians(medians)
-      arr3 = partitionUsingMedian(array,0,size-1,array.index(median_of_medians))
+      a = partitionUsingMedian(array,0,size-1,array.index(median_of_medians))
       print("Median of medians ::",median_of_medians)
       print("Groups:",arr2)
-      print(arr3)
-      # k = int(input("enter the smallest kth element::"))
-      # smallest_index= select(array, 0, size-1, k)
-      # print(smallest_index)
-   except (ValueError,NameError,IndexError,RecursionError):
-      print("ERROR REENTER!!!")
+      print(a)
+      k = int(input("enter the smallest kth element::"))
+      smallest_index= select(array, 0, size-1, k)
+      print(smallest_index)
+   # except (ValueError,NameError,IndexError,RecursionError):
+      # print("ERROR REENTER!!!")
