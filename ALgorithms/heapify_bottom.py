@@ -1,5 +1,6 @@
 import random as rd
 def heapify_bottom(array,index):
+   count =0
    size = len(array)
    root = index
    left = 2*index+1
@@ -10,20 +11,23 @@ def heapify_bottom(array,index):
       root = right
    if root != index:
       array[root],array[index]=array[index],array[root]
+      count+=1
       heapify_bottom(array, root)
-   
+   return count
 def min_heap(array):
+   counter=0
    n= len(array)
    i = n//2-1
    while i>=0:
-      heapify_bottom(array, i)
+      counter+=heapify_bottom(array, i)
       i-=1
-
+   return array,counter
 if __name__ == "__main__":
    size = int(input("Enter the size::"))
    array = []
    for _ in range(size):
       array.append(rd.randint(1, 1000))
    print("Original Array::",array)
-   min_heap(array)
-   print("Min Heap::",array)
+   array2,count = min_heap(array)
+   print("Min Heap::",array2)
+   print("Swap Count::",count)
