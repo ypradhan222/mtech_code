@@ -58,7 +58,7 @@ if __name__ == "__main__":
          medians.append(find_median(j))
       print(medians)
       median_of_medians = find_median_of_medians(medians)
-      a = partitionUsingMedian(array,0,size-1,array.index(median_of_medians))
+      a = partitionUsingMedian(arr2,0,size-1,array.index(median_of_medians))
       print("Median of medians ::",median_of_medians)
       print("Groups:",arr2)
       print(a)
