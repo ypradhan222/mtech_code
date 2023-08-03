@@ -24,7 +24,7 @@ def min_heap(array):
    return array,counter
 if __name__ == "__main__":
    size = int(input("Enter the size::"))
-   array = []
+   array=[]
    for _ in range(size):
       array.append(rd.randint(1, 1000))
    print("Original Array::",array)
