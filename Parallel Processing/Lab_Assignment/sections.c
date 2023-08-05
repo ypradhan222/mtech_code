@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include <omp.h>
-#define N     1000
+#define N 1000
 
 int main ()
 {
@@ -30,14 +30,16 @@ for (i=0; i < N; i++) {
     }  
 
   }  
+  float sum =0.0;
+  float  product =0.0;
+  #pragma omp parallel for reduction(+ : sum) reduction(* :product)
   for (int i = 0; i < N; i++)
   {
-   printf("%f\n",c[i]);/* code */
+   sum += c[i];
+   product *= d[i]; /* code */
   }
-  for (int i = 0; i < N; i++)
-  {
-   printf("%f",d[i]);/* code */
-  }
+  printf("Sum of c::%f\n",sum);
+  printf("Product of d: %f\n",product);
   
 return 0;
 }

@@ -16,9 +16,9 @@ int second_max(int *array,int left,int right,int *maxi,int *secmax){
       *secmax = min(array[left],array[right]);
    }
    else {
-      mid = int((left+right)/2);
+      mid = (left+right)/2;
        *max1 = second_max(array,left,right,max1,max2); 
-
+      
 
    }
 
