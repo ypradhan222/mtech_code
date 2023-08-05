@@ -1,17 +1,6 @@
 import random as rd
 import math
 def heapify_topdown(arr,index):
-   # root = index
-   # left = 2*index +1
-   # right = 2*index +2
-   # # size = len(arr)
-   # if left<size and arr[left]<arr[root]:
-   #    root = left
-   # if right<size and arr[right]<arr[root]:
-   #    root = right
-   # if root!=index:
-   #    arr[root],arr[index] = arr[index],arr[root]
-   #    heapify_topdown(arr,size,root) 
    count = 0
    root = (index-1)//2
    while root >=0 and arr[index]<arr[root]:
