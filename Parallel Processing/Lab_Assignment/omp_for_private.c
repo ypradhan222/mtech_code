@@ -55,17 +55,20 @@ for (int i = 0; i < size; i++)
   printMatrix(array2,size);
 double time1 = omp_get_wtime();
 //Multiplying the matrices
-#pragma omp parallel for private(j,k)
-for (i = 0; i < size; i++)
+#pragma omp parallel
 {
- for (j = 0; j < size; j++)
- {
-  result[i][j]=0;
-  for (k = 0; k < size; k++)
-  {
+   #pragma omp for private(j,k)
+   for (i = 0; i < size; i++)
+   {
+   for (j = 0; j < size; j++)
+   {
+   result[i][j]=0;
+   for (k = 0; k < size; k++)
+   {
     result[i][j] +=  array1[i][k] * array2[k][j];
-  }
+   }
  }
+}
 }
 double time2 = omp_get_wtime();
 printf("Resultant matrix::\n");
