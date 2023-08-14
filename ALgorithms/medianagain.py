@@ -17,21 +17,33 @@ def find_median_of_medians(list):
 def swap(array,num,num2):
    array[num],array[num2] = array[num2],array[num]
 
-def partitionUsingMedian(array,left,right,median_index):
-   i ,j = left,right
-   value = array[median_index]
-   swap(array,left,median_index)
-   while i <= j:
-      if array[i]<=value:
-         i+=1
-      elif array[j]>value:
-         j-=1
-      else:
-         swap(array,i,j)
-         i+=1
-         j-=1
-   swap(array,left,j)
-   return array
+# def partitionUsingMedian(array,left,right,median_index):
+#    i ,j = left,right
+#    value = array[median_index]
+#    swap(array,left,median_index)
+#    while i <= j:
+#       if array[i]<=value:
+#          i+=1
+#       elif array[j]>value:
+#          j-=1
+#       else:
+#          swap(array,i,j)
+#          i+=1
+#          j-=1
+#    swap(array,left,j)
+#    return array
+def partitionUsingMedian(array,median_of_medians,median_index):
+   array1,array2,array3=[],[],[]
+   for i in array:
+     if i<median_of_medians:
+         array1.append(i)
+     elif i > median_of_medians:
+         array3.append(i)
+     else:
+         array2.append(i) 
+   if median_index < len(array1):
+      return 
+# def partition(array,x):
 
 # def select(array,left,right,k):
 #    if left==right:
