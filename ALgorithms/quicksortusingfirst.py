@@ -21,12 +21,18 @@ def partition(array, left, right, count):
     return i - 1, count + (right - left)
 
 if __name__ == "__main__":
-    n = int(input("Enter the size: "))
-    arr = []
-    count =0
-    for _ in range(n):
-        arr.append(rd.randint(1, 1000))
-    print("Original array:", arr)
-    arr,count = quick_sort(arr, 0, n - 1, count)
-    print("Sorted array:", arr)
-    print("Count::",count)
+    try:
+        n = int(input("Enter the size: "))
+        if n>0:
+            arr = []
+            count =0
+            for _ in range(n):
+                arr.append(rd.randint(1, 1000))
+            print("Original array:", arr)
+            arr,count = quick_sort(arr, 0, n - 1, count)
+            print("Sorted array:", arr)
+            print("Count::",count)
+        else:
+            print("Enter valid size")
+    except (ValueError,NameError) as e:
+        print("enter integer as size")

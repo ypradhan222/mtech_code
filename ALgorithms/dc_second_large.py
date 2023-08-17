@@ -57,25 +57,24 @@ def find_second_max(arr, start, end):
     if start + 1 == end:
         return (arr[start], arr[end]) if arr[start] > arr[end] else (arr[end], arr[start])
     mid = (start + end) // 2
-
     left_max, left_second_max = find_second_max(arr, start, mid)
     right_max, right_second_max = find_second_max(arr, mid + 1, end)
-
     second_max = max(left_second_max, right_second_max, min(left_max, right_max))
     if left_max > right_max:
         return left_max, second_max
     else:
         return right_max, second_max
 
-try:
-    n = int(input("Enter the size of the array: "))
-    if n >0:
-        arr = [rd.randint(1, 100) for _ in range(n)]  # Generate a random array
-        print("Array:", arr)
-        _, second_largest = find_second_max(arr, 0, n-1)
-        print("Second Largest:", second_largest)
-    else:
-        print("Enter size as positive numbers")
-except ValueError:
-    print("ERROR!! Please input an integer as the size.")
+if __name__ == "__main__": 
+    try:
+        n = int(input("Enter the size of the array: "))
+        if n >0:
+            arr = [rd.randint(1, 100) for _ in range(n)]  # Generate a random array
+            print("Array:", arr)
+            _, second_largest = find_second_max(arr, 0, n-1)
+            print("Second Largest:", second_largest)
+        else:
+            print("Enter size as positive numbers")
+    except ValueError:
+        print("ERROR!! Please input an integer as the size.")
 

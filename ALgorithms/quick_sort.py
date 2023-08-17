@@ -1,8 +1,4 @@
 import numpy as np
-n = int(input("Enter the size ::: "))
-arr = np.random.randint(1,1000,size =n)
-np.printoptions(threshold=np.inf)
-print("Unsorted array::",arr)
 def swap(array,num,num2):
     array[num],array[num2] = array[num2],array[num]
 
@@ -29,8 +25,18 @@ def partition(array,left,right,count):
     swap(array,i+1,right)
     count+=1
     return i+1,count
-
-count = 0
-arr ,count = quick_sort(arr, 0, n-1,count)
-print("Sorted array : ",arr)
-print("Count::",count)
+if __name__ =="__main__":
+    try:
+        n = int(input("Enter the size ::: "))
+        if n>0:
+            arr = np.random.randint(1,1000,size =n)
+            np.printoptions(threshold=np.inf)
+            print("Unsorted array::",arr)
+            count = 0
+            arr ,count = quick_sort(arr, 0, n-1,count)
+            print("Sorted array : ",arr)
+            print("Count::",count)
+        else:
+            print("Please enter size greater than zero")
+    except (ValueError,NameError) as e:
+        print("Enter valid size")
