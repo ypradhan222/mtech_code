@@ -10,25 +10,36 @@ int main(){
   scanf("%d",&n);
   bool number[n+1];
   int output[n+1];
+  omp_set_num_threads(16);
   if (n==1){
     printf("1 \n");
   }
   else{
+//   Marking every number as prime number first
+  #pragma omp parallel for
   for (int i = 0; i <= n; i++)
   {
   number[i] = true;  /* code */
   }
-  for (int i = 2; i*i <= n; i++)
+//   Unmarking the elements which are even and its multiples
+// also the other prime's multiples.
+  int i =0;
+//   #pragma omp parallel for private(i)
+  for ( i = 2; i*i <= n; i++)
   {
   if (number[i]==true)
-  {for (int j = i*i; j <= n; j+=i)
+  { 
+   #pragma omp parallel for
+   for (int j = i*i; j <= n; j+=i)
   {
     number[j] = false; /* code */
   }   
    }    
   }
+  double time1 = omp_get_wtime();
   int count=0;
   int output_index = 0;
+  #pragma omp parallel for shared(count)
   for (int i = 2; i <= n; i++)
   {
   if(number[i]==true){
@@ -37,11 +48,13 @@ int main(){
      count++;
   }  /* code */
   }
+  double time2 = omp_get_wtime();
   for (int i = 0; i <count; i++)
   {
-  printf("%3d",output[i]);  /* code */
+  printf("%8d",output[i]);  /* code */
   }
   printf("\n");  
+  printf("Execution Time :: %f\n",time2 -time1);
   }
   return 0;
 }
