@@ -23,9 +23,9 @@ int main(){
   }
 //   Unmarking the elements which are even and its multiples
 // also the other prime's multiples.
-  int i =0;
-//   #pragma omp parallel for private(i)
-  for ( i = 2; i*i <= n; i++)
+   int i;
+//   #pragma omp parallel for 
+  for (  i = 2; i*i <= n; i++)
   {
   if (number[i]==true)
   { 
@@ -39,13 +39,14 @@ int main(){
   double time1 = omp_get_wtime();
   int count=0;
   int output_index = 0;
-  #pragma omp parallel for shared(count)
+  #pragma omp parallel for reduction(+ : count)
   for (int i = 2; i <= n; i++)
   {
   if(number[i]==true){
-    output[output_index] = i;
-     output_index++;
-     count++;
+      #pragma omp critical
+      output[output_index] = i;
+      output_index++;
+      count++;
   }  /* code */
   }
   double time2 = omp_get_wtime();

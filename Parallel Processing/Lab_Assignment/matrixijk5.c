@@ -53,21 +53,26 @@ for (int i = 0; i < size; i++)
   printf("Array 2 :: \n");
   printMatrix(array2,size);
 //Multiplying the matrices
+clock_t start,end;
+double total;
 int i,j,k;
+start = clock();
 for (k = 0; k < size; k++)
 {
- for (j = 0; j < size; j++)
+ for (i = 0; i < size; i++)
  {
   result[i][j]=0;
-  for (i = 0; i < size; i++)
+  for (j = 0; j < size; j++)
   {
     result[i][j] +=  array1[i][k] * array2[k][j];
   }
  }
 }
+end = clock();
+total = ((double)(end-start))/CLOCKS_PER_SEC;
 printf("Resultant matrix::\n");
 printMatrix(result,size);
-
+printf("Time Taken:: %f\n",total);
 for (int i = 0; i < size; i++)
 {
  free(array1[i]);

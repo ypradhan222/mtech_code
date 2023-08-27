@@ -136,14 +136,18 @@ int main(){
     }  
    }
    omp_set_num_threads(4);
+   double start,end;
    //Now we check for alive points in the grid
    int generate = 0;  //For generating the grid
-   while(generate < 50){   
-      #pragma omp parallel for collapse(2)
+   start = omp_get_wtime();
+   while(generate < 10000){   
+      #pragma omp parallel for schedule(dynamic,8)
       for (int i = 0; i < size; i++)
       {
        for (int j = 0; j < size; j++)
-       {
+       { 
+         // int id = omp_get_thread_num();
+         // printf("Thread %d is working on i = %d ,j =%d\n",id,i,j);
          if (isAlive(matrix1,i,j,size))
             matrix2[i][j] = '@';
          else
@@ -164,10 +168,12 @@ int main(){
       printMatrix(matrix1,size);
       printf("\n");
    
-      usleep(500000);
+      // usleep(500000);
       generate+=1;
 
    }
+   end = omp_get_wtime();
+   printf("Execution time for  iteration is %f secs\n",(end-start));
    freeingMatrix(matrix1,size);
    freeingMatrix(matrix2,size);
    
