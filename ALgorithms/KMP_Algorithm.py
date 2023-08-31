@@ -1,43 +1,52 @@
-
-def kmp_matching(string,pattern,next_arr):
-   i,j = 0,0
-   found = False
-   n = len(string)
-   m = len(pattern)
-   while not found and n-i>m-j:
-      if string[i] == pattern[j]:
-         i+=1
-         j+=1
-      elif string[i]!=pattern[j] and j!=0:
-         j = next_arr[j-1]
-      elif j == m:
-         found = True
-         print("index :: ",str(i-j))
-      else:
-         i+=1
+def kmp_matching(string, pattern):
+    i, j = 0, 0
+    found = False
+    n = len(string)
+    m = len(pattern)
+    Next = build_next(pattern)
+    
+    while not found and n - i >= m - j :
+        if string[i] == pattern[j]:
+            i += 1
+            j += 1
+        elif string[i]!=pattern[j]:
+            if j != 0:
+               j = Next[j - 1]
+            else:
+               i+=1
+        if j == m:
+            found = True
+            print("Pattern found at index:", i - j)
+            # break
+    if not found:
+        print("Pattern not found in the string.")
+        return
 
 def build_next(pattern):
-   m = len(pattern)
-   array = [0]*m
-   i=1
-   j =0
-   while i<m:
-      if pattern[i]==pattern[j]:
-         j+=1
-         array[i] = j
-         i+=1
-      elif j!=0:
-         j = array[j-1]
-      else:
-         array[i] = 0
-         i+=1
-   return array
+    m= len(pattern)
+    array=[0]*m 
+    j = 0
+
+    for i in range(1, m):
+        while j > 0 and pattern[i] != pattern[j]:
+            j = array[j - 1]
+        
+        if pattern[i] == pattern[j]:
+            j += 1
+        array[i] = j
+    return array
 
 if __name__ == "__main__":
-   inp_string = str(input("enter a string :: "))
-   print(inp_string)
-   next_arr = []
-   pattern = str(input("enter pattern :: "))
-   next_arr = build_next(pattern)
-   kmp_matching(inp_string,pattern,next_arr)
+   #  inp_string = input("Enter a string: ")
+   #  print("Input string:", inp_string)
+   #  pattern = input("Enter a pattern: ")
+   inp_string = "adfdfdadbabafdbaabaafdadbadfdeadfdfdadfdfdljfdlfdlsfdlfd"
+   pattern = "baba"
+   # file1 = open()
+   # file2 = open()
+   # inp_string = file1.read()
+   # pattern = file2.read()
+
+   kmp_matching(inp_string, pattern)
+
      

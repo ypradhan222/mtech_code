@@ -32,7 +32,15 @@ def swap(array,num,num2):
 #          j-=1
 #    swap(array,left,j)
 #    return array
-def partitionUsingMedian(array,median_of_medians,median_index):
+def partitionUsingMedian(array,median_index):
+   if len(array)<=5:
+      array.sort()
+      return array[median_index] 
+   groups = grouping(array,0,len(array)-1)
+   medians = []
+   for group in range(groups):
+      medians.append(find_median(group))
+   median_of_medians = partitionUsingMedian(medians,len(medians))
    array1,array2,array3=[],[],[]
    for i in array:
      if i<median_of_medians:
@@ -42,7 +50,11 @@ def partitionUsingMedian(array,median_of_medians,median_index):
      else:
          array2.append(i) 
    if median_index < len(array1):
-      return 
+      return partitionUsingMedian(array1,median_index)
+   elif median_index < len(array1) + len(array2):
+      return median_of_medians
+   else:
+      return partitionUsingMedian(array3,median_index-len(array1)- len(array2))
 # def partition(array,x):
 
 # def select(array,left,right,k):
@@ -65,16 +77,20 @@ if __name__ == "__main__":
          array.append(rd.randint(1, 1000))
       print(array)
       if size >140:
-         arr2 = grouping(array, 0, size-1)
-         medians = []
-         for j in arr2:
-            medians.append(find_median(j))
-         print(medians)
-         median_of_medians = find_median_of_medians(medians)
-         a = partitionUsingMedian(arr2,0,size-1,array.index(median_of_medians))
-         print("Median of medians ::",median_of_medians)
-         print("Groups:",arr2)
-         print(a)
+         # arr2 = grouping(array, 0, size-1)
+         # medians = []
+         # for j in arr2:
+         #    medians.append(find_median(j))
+         # print(medians)
+         # median_of_medians = find_median_of_medians(medians)
+         # a = partitionUsingMedian(arr2,median_of_medians,array.index(median_of_medians))
+         median = partitionUsingMedian(array,size//2)
+         print("Median ",median)
+         # print("Groups:",arr2)
+         # print(a)
+      else:
+         array.sort()
+         print("MEdian is :: ",array[len(array)//2])
       # k = int(input("enter the smallest kth element::"))
       # smallest_index= select(array, 0, size-1, k)
       # print(smallest_index)
