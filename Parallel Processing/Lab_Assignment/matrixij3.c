@@ -72,7 +72,7 @@ end = clock();
 total = ((double)(end-start))/CLOCKS_PER_SEC;
 printf("Resultant matrix::\n");
 printMatrix(result,size);
-printf("Time Taken:: %f\n",total);
+printf("Time Taken:: %f\n",total)
 for (int i = 0; i < size; i++)
 {
  free(array1[i]);
