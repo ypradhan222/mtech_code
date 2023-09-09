@@ -40,12 +40,12 @@ if __name__ == "__main__":
    #  inp_string = input("Enter a string: ")
    #  print("Input string:", inp_string)
    #  pattern = input("Enter a pattern: ")
-   inp_string = "adfdfdadbabafdbaabaafdadbadfdeadfdfdadfdfdljfdlfdlsfdlfd"
-   pattern = "baba"
-   # file1 = open()
-   # file2 = open()
-   # inp_string = file1.read()
-   # pattern = file2.read()
+#    inp_string = "adfdfdadbabafdbaabaafdadbadfdeadfdfdadfdfdljfdlfdlsfdlfd"
+#    pattern = "baba"
+   file1 = open('/home/dmacs-5/Documents/mtech_2023/ALgorithms/sapiens.txt','r')
+   file2 = open('/home/dmacs-5/Documents/mtech_2023/ALgorithms/pattern.txt','r')
+   inp_string = file1.read()
+   pattern = file2.read()
 
    kmp_matching(inp_string, pattern)
 
