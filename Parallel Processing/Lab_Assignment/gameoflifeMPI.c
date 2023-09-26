@@ -114,7 +114,7 @@ int main(){
    
    //Now we check for alive points in the grid
    int generate = 0;
-   while(generate < 100){
+   while(generate < 30){
       for (int i = 0; i < size; i++)
       {
        for (int j = 0; j < size; j++)
@@ -131,7 +131,7 @@ int main(){
       
       printMatrix(matrix1,size);
       printf("\n");
-      usleep(100000);
+      usleep(500000);
       generate+=1;
 
    }

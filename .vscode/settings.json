@@ -2,5 +2,10 @@
    "files.associations": {
       "unistd.h": "c"
    },
-   "C_Cpp.errorSquiggles": "disabled"
+   "C_Cpp.errorSquiggles": "disabled",
+   "python.testing.pytestArgs": [
+      "ALgorithms"
+   ],
+   "python.testing.unittestEnabled": false,
+   "python.testing.pytestEnabled": true
 }

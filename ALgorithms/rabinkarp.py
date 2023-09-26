@@ -26,7 +26,11 @@ def rabinkarpmatch(inp_string,pattern,prime):
 
 prime = 11
 if __name__== "__main__":
-   input_string = str(input("Enter the input string::"))
+   # input_string = str(input("Enter the input string::"))
    # print(input_string)
-   pattern = str(input("Enter the pattern:: "))
+   # pattern = str(input("Enter the pattern:: "))
+   file1 = open('/home/dmacs-5/Documents/mtech_2023/ALgorithms/sapiens.txt','r')
+   file2 = open('/home/dmacs-5/Documents/mtech_2023/ALgorithms/pattern.txt','r')
+   input_string = file1.read()
+   pattern = file2.read()
    rabinkarpmatch(input_string,pattern,prime)

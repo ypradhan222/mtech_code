@@ -20,20 +20,21 @@ Rules:
 #include<time.h>
 #include<unistd.h>
 void printMatrix(char **array1,int size){
- printf("\033[2J\033[1;1H");
+//  printf("\033[2J\033[1;1H");
 for (int i = 0; i < size; i++)
 {
 for (int j = 0; j < size; j++)
 {
-   if(array1[i][j] == '@'){
-  printf("\033[42m  \033[0m");   
-   }
-   else
-      printf("\033[30m  \033[0m");//Used ANSI escape code for better formatting
-                                    //30 for black background for dead cells
+//    if(array1[i][j] == '@'){
+//   printf("\033[42m  \033[0m");   
+//    }
+//    else
+//       printf("\033[30m  \033[0m");//Used ANSI escape code for better formatting
+//                                     //30 for black background for dead cells
+ printf("%2c",array1[i][j]);
+}
 }
  printf("\n");
-}
 }
 
 void freeingMatrix(char **matrix,int size){
@@ -140,7 +141,7 @@ int main(){
    //Now we check for alive points in the grid
    int generate = 0;  //For generating the grid
    start = omp_get_wtime();
-   while(generate < 10000){   
+   while(generate < 1000){   
       #pragma omp parallel for schedule(dynamic,8)
       for (int i = 0; i < size; i++)
       {
@@ -168,7 +169,7 @@ int main(){
       printMatrix(matrix1,size);
       printf("\n");
    
-      // usleep(500000);
+      usleep(100000);
       generate+=1;
 
    }
