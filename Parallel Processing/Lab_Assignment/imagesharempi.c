@@ -1,27 +1,31 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <MagickWand/MagickWand.h>
+#include <string.h>
+#include <mpi.h>
 
-int main() {
-    MagickWand *wand;
-    MagickWandGenesis();
+#define MAX_FILENAME_LENGTH 256
 
-    // Load an image from your local system
-    wand = NewMagickWand();
-    if (MagickReadImage(wand, "/Image Processing/media/download.jpeg") == MagickFalse) {
-        printf("Error: Unable to load the image.\n");
-        DestroyMagickWand(wand);
-        MagickWandTerminus();
-        return 1;
+int main(int argc, char *argv[]) {
+    int rank, size;
+    char filename[MAX_FILENAME_LENGTH];
+
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+    if (rank == 0) {
+        // Node 0 collects the image file name from the user
+        printf("Enter the image file name: ");
+        fflush(stdout);
+        fgets(filename, MAX_FILENAME_LENGTH, stdin);
+        strtok(filename, "\n"); // Remove the trailing newline character
     }
 
-    // Display the image (requires X server, you may need to run this code on a graphical environment)
-    MagickDisplayImage(wand, "Display");
+    // Broadcast the image filename from node 0 to all other nodes
+    MPI_Bcast(filename, MAX_FILENAME_LENGTH, MPI_CHAR, 0, MPI_COMM_WORLD);
 
-    // Clean up
-    DestroyMagickWand(wand);
-    MagickWandTerminus();
+    // Now, all nodes can access the image filename
+    printf("Rank %d: Image file name is: %s\n", rank, filename);
 
+    MPI_Finalize();
     return 0;
 }
-
