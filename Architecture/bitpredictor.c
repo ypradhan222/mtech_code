@@ -38,10 +38,11 @@ int main(int argc,char *argv[]){
   }
    int count_correct,count_incorrect;
    count_correct = onebitpredictor(inputFile);
-   fseek(inputFile,EOF,SEEK_END);
+   fseek(inputFile,0,SEEK_END);
    size_t inputlength = ftell(inputFile);
-   rewind(inputFile);
+  //  rewind(inputFile);
    printf("Correct Prediction :: %d\n",count_correct);
+   printf("length=%ld\n",inputlength);
    count_incorrect = inputlength - count_correct;
    printf("InCorrect Prediction :: %d\n",count_incorrect);
    float miss_rate = (float)count_incorrect/inputlength;
