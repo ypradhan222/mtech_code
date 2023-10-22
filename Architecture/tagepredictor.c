@@ -222,7 +222,6 @@ bool GetBasePrediction(int8_t bimodalCounter) {
 }
 
 bool getPrediction(struct TAGEPredictor* predictor, uint32_t branchPC) {
-    // ... rest of your getPrediction function remains unchanged ...
     bool basePrediction;
     uint32_t index = (branchPC % BIMODAL_SIZE);
     int8_t bimodCounter = predictor->bimodaltable[index].counter;

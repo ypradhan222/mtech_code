@@ -28,6 +28,7 @@ printf("Enter the size::");
 scanf("%d",&size);
 srand(time(NULL));
 int i,j,k;
+omp_set_num_threads(1);
 int **array1 = (int **)malloc(sizeof(int *) *size);
 for (int i = 0; i < size; i++)
 {

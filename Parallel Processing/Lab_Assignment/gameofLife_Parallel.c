@@ -136,7 +136,7 @@ int main(){
     
     }  
    }
-   omp_set_num_threads(4);
+   omp_set_num_threads(1);
    double start,end;
    //Now we check for alive points in the grid
    int generate = 0;  //For generating the grid
