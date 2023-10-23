@@ -30,7 +30,7 @@ vector<string> unroll_loop(const string& path) {
         if (line.empty()) {
             continue;
         }
-        if (line.find("ADD.I") != string::npos || line.find("BNE") != string::npos || instructionBlk) {
+        if (line.find("ADD.I") != string::npos || line.find("BNE") != string::npos || instructionBlk) { //if it finds ADD.I and BNE
             otherLines.push_back(line);
             instructionBlk = 1;
         } else {
@@ -54,7 +54,7 @@ vector<string> unroll_loop(const string& path) {
         unordered_map<string, string> mapRegister;
         current = 1; // Reset the current value to 1
         for (const string& regname : floatvector) {
-            mapRegister[regname] = "F" + to_string(current);
+            mapRegister[regname] = "F" + to_string(current);   //Give values to keys register names
             current++;
         }
         for (const string& instruction : instructions) {
